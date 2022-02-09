@@ -6,33 +6,30 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Opposants {
-  private Joueur joueurEsku;
-  private Joueur joueurZaku;
-git
-/*
+  /*private Joueur joueurEsku;
+  private Joueur joueurZaku;*/
+
   private Equipe equipeEsku;
   private Equipe equipeZaku;
- */
 
-  public Opposants(Joueur joueurEsku, Joueur joueurZaku) {
+  /*public Opposants(Joueur joueurEsku, Joueur joueurZaku) {
     this.joueurEsku = joueurEsku;
     this.joueurZaku = joueurZaku;
-  }
+  }*/
 
-  /*
   public Opposants(Equipe equipeEsku, Equipe equipeZaku)
   {
     this.equipeEsku=equipeEsku;
     this.equipeZaku=equipeZaku;
   }
-   */
-  public void tourner() {
+
+  /*public void tourner() {
     var tmp = joueurEsku;
     joueurEsku = joueurZaku;
     joueurZaku = tmp;
-  }
+  }*/
 
-  /*
+
   public void tournerEquipe()
   {
     var tmp = equipeEsku;
@@ -41,9 +38,9 @@ git
 
     equipeZaku.tourner();
   }
-   */
 
-  public Joueur joueurEsku() {
+
+  /*public Joueur joueurEsku() {
     return joueurEsku;
   }
 
@@ -53,27 +50,26 @@ git
 
   public List<Joueur> dansLOrdre() {
     return List.of(joueurEsku, joueurZaku);
-  }
+  }*/
 
-  /*
+
   public Joueur joueurEsku()
   {
-    return equipeEsku.joueurEsku();
+    return equipeEsku.getJoueurEsku();
   }
-   */
 
-  /*
+
+
   public Joueur joueurZaku()
   {
-    return equipeZaku.joueurZaku();
+    return equipeZaku.getJoueurZaku();
   }
-   */
 
 
-  /*
-  public List<Joueur> dansLOrdreEquipe()
+
+  public List<Joueur> dansLOrdre()
   {
-    return Liste.of(equipeEsku.joueurEsku(),equipeZaku.joueurEsku(),equipeEsku.joueurZaku(),equipeZaku.joueurZaku());
+    return List.of(equipeEsku.getJoueurEsku(),equipeZaku.getJoueurEsku(),equipeEsku.getJoueurZaku(),equipeZaku.getJoueurZaku());
   }
-   */
+
 }

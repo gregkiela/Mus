@@ -31,4 +31,14 @@ public class Equipe {
         joueurEsku=joueurZaku;
         joueurZaku=tmp;
     }
+
+    public Joueur getJoueurEsku()
+    {
+        return joueurEsku;
+    }
+
+    public Joueur getJoueurZaku()
+    {
+        return joueurZaku;
+    }
 }
