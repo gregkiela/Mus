@@ -30,7 +30,7 @@ public class Opposants {
   }*/
 
 
-  public void tournerEquipe()
+  public void tourner()
   {
     var tmp = equipeEsku;
     equipeEsku=equipeZaku;
