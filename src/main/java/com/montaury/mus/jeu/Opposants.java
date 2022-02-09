@@ -8,7 +8,6 @@ import java.util.List;
 public class Opposants {
   private Joueur joueurEsku;
   private Joueur joueurZaku;
-git
 /*
   private Equipe equipeEsku;
   private Equipe equipeZaku;
