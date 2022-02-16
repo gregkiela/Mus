@@ -36,6 +36,7 @@ public class Opposants {
     equipeEsku=equipeZaku;
     equipeZaku= tmp;
     equipeZaku.tourner();
+    equipeEsku.tourner();
   }
 
 
