@@ -38,6 +38,8 @@ public class Opposants {
     equipeZaku.tourner();
   }
 
+  public Equipe getEquipeEsku(){
+    return equipeEsku; }
 
   /*public Joueur joueurEsku() {
     return joueurEsku;
