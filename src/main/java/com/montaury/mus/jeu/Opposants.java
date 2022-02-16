@@ -53,19 +53,36 @@ public class Opposants {
   }*/
 
 
-  public Joueur joueurEsku()
+  public Joueur joueurEskuEquipeEzku()
   {
     return equipeEsku.getJoueurEsku();
   }
+  public Joueur joueurZakuEquipeEzku()
+  {
+    return equipeEsku.getJoueurZaku();
+  }
 
-
+  public Joueur joueurEskuEquipeZaku()
+  {
+    return equipeZaku.getJoueurEsku();
+  }
+  public Joueur joueurZakuEquipeZaku()
+  {
+    return equipeZaku.getJoueurZaku();
+  }
 
   public Joueur joueurZaku()
   {
     return equipeZaku.getJoueurZaku();
   }
 
+  public Equipe getEquipeEsku() {
+    return equipeEsku;
+  }
 
+  public Equipe getEquipeZaku() {
+    return equipeZaku;
+  }
 
   public List<Joueur> dansLOrdre()
   {
