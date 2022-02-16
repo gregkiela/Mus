@@ -12,9 +12,9 @@ public class Opposants {
   private Equipe equipeEsku;
   private Equipe equipeZaku;
 
-  public Opposants(Joueur joueurEsku, Joueur joueurZaku)
-  {
-
+  public Opposants(Joueur joueurEsku, Joueur joueurZaku) {
+    Equipe equipe1 =new Equipe(List.of(joueurEsku),"Equipe1");
+    Equipe equipe2 =new Equipe(List.of(joueurZaku),"Equipe2");
   }
 
   public Opposants(Equipe equipeEsku, Equipe equipeZaku)
@@ -35,7 +35,6 @@ public class Opposants {
     var tmp = equipeEsku;
     equipeEsku=equipeZaku;
     equipeZaku= tmp;
-
     equipeZaku.tourner();
   }
 
