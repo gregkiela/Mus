@@ -5,6 +5,9 @@ import com.montaury.mus.console.AffichageEvenements;
 import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.joueur.Equipe;
 import com.montaury.mus.jeu.Opposants;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 //Class du jeu Mus
@@ -14,8 +17,17 @@ public class JeuDeMus {
     var nomJoueur = new Scanner(System.in).next();
     var joueurHumain = Joueur.humain(nomJoueur);
 
-    var Equipe1 =  new Equipe(joueurHumain,Joueur.ordinateur(),"Equipe joueur");
-    var Equipe2 =  new Equipe(Joueur.ordinateur(),Joueur.ordinateur(), "Equipe Ordinateur");
+    var listeEquipe1 = new ArrayList<Joueur>();
+    listeEquipe1.add(joueurHumain);
+    listeEquipe1.add(Joueur.ordinateur());
+
+    var listeEquipe2 = new ArrayList<Joueur>();
+    listeEquipe1.add(Joueur.ordinateur());
+    listeEquipe1.add(Joueur.ordinateur());
+
+
+    var Equipe1 =  new Equipe(listeEquipe1,"Equipe joueur");
+    var Equipe2 =  new Equipe(listeEquipe2, "Equipe Ordinateur");
 
     var partie = new Partie(new AffichageEvenements(joueurHumain));
     var resultat = partie.jouer(new Opposants(Equipe1,Equipe2));

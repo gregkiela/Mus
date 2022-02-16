@@ -32,11 +32,11 @@ public class Equipe {
 
     public Joueur getJoueurEsku()
     {
-        return joueurEsku;
+        return joueursEquipe.get(0);
     }
 
     public Joueur getJoueurZaku()
     {
-        return joueurZaku;
+        return joueursEquipe.get(joueursEquipe.size()-1);
     }
 }
