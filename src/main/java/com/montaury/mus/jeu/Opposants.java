@@ -12,7 +12,8 @@ public class Opposants {
   private Equipe equipeEsku;
   private Equipe equipeZaku;
 
-  public Opposants(Joueur joueurEsku, Joueur joueurZaku) {
+  public Opposants(Joueur joueurEsku, Joueur joueurZaku)
+  {
 
   }
 
