@@ -12,10 +12,9 @@ public class Opposants {
   private Equipe equipeEsku;
   private Equipe equipeZaku;
 
-  /*public Opposants(Joueur joueurEsku, Joueur joueurZaku) {
-    this.joueurEsku = joueurEsku;
-    this.joueurZaku = joueurZaku;
-  }*/
+  public Opposants(Joueur joueurEsku, Joueur joueurZaku) {
+
+  }
 
   public Opposants(Equipe equipeEsku, Equipe equipeZaku)
   {
