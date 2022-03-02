@@ -34,8 +34,8 @@ class OpposantsTest {
         listeEquipe1.add(joueur2);
 
         var listeEquipe2 = new ArrayList<Joueur>();
-        listeEquipe1.add(joueur3);
-        listeEquipe1.add(joueur4);
+        listeEquipe2.add(joueur3);
+        listeEquipe2.add(joueur4);
 
         var Equipe1 =  new Equipe(listeEquipe1,"Equipe numero 1");
         var Equipe2 =  new Equipe(listeEquipe2,"Equipe numero 2");
@@ -79,8 +79,8 @@ class OpposantsTest {
         listeEquipe1.add(joueur2);
 
         var listeEquipe2 = new ArrayList<Joueur>();
-        listeEquipe1.add(joueur3);
-        listeEquipe1.add(joueur4);
+        listeEquipe2.add(joueur3);
+        listeEquipe2.add(joueur4);
 
         var Equipe1 = new Equipe(listeEquipe1, "Equipe numero 1");
         var Equipe2 = new Equipe(listeEquipe2, "Equipe numero 2");
