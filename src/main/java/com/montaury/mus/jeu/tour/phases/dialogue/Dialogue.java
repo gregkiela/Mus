@@ -63,7 +63,7 @@ public class Dialogue {
 
     public Deroulement(Participants participants) {
       this.participants = participants;
-      this.joueursDevantParler = participants.dansLOrdre().iterator();
+      this.joueursDevantParler = participants.dansLOrdreJoueur().iterator();
     }
 
     private Deroulement(Participants participants, Iterator<Joueur> joueursDevantParler, List<TypeChoix> prochainsChoixPossibles) {

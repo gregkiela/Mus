@@ -40,7 +40,7 @@ public class  AffichageEvenements implements Evenements {
   @Override
   public void tourTermine(Opposants opposants, Manche.Score score) {
     afficher("Tour terminé");
-    opposants.dansLOrdre().forEach(this::afficherMain);
+    opposants.dansLOrdreJoueur().forEach(this::afficherMain);
     score.scoreParEquipe().forEach((key, value) -> afficher("Score " + key.nomEquipe() + ": " + value));
     sautLigne();
   }

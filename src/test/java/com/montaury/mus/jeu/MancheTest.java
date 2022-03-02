@@ -51,7 +51,7 @@ class MancheTest {
 
     manche.jouer(opposants);
 
-    assertThat(opposants.dansLOrdre()).containsExactly(joueurZaku, joueurEsku);
+    assertThat(opposants.dansLOrdreJoueur()).containsExactly(joueurZaku, joueurEsku);
   }
 
   private Manche manche;

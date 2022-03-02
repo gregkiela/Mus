@@ -2,10 +2,12 @@ package com.montaury.mus.jeu.tour.phases;
 
 import com.montaury.mus.jeu.Manche;
 import com.montaury.mus.jeu.evenements.Evenements;
-import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.joueur.Main;
+import com.montaury.mus.jeu.joueur.Joueur;
+import com.montaury.mus.jeu.joueur.Equipe;
 import com.montaury.mus.jeu.Opposants;
 import com.montaury.mus.jeu.tour.phases.dialogue.Dialogue;
+
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -31,7 +33,7 @@ public abstract class Phase {
       return Phase.Resultat.nonJouable();
     }
     if (participants.estUnique()) {
-      Joueur premier = participants.premier();
+      Equipe premier = participants.premier();
       return Phase.Resultat.termine(premier, 0, pointsBonus(premier));
     }
     var resultat = new Dialogue(affichage).derouler(participants);
@@ -40,8 +42,8 @@ public abstract class Phase {
 
   private Resultat conclure(Dialogue.Recapitulatif dialogue, Participants participants) {
     if (dialogue.terminePar(TIRA)) {
-      var joueurEmportantLaMise = dialogue.dernierJoueurAyantMise();
-      return Phase.Resultat.termine(joueurEmportantLaMise, dialogue.pointsEngages(), pointsBonus(joueurEmportantLaMise));
+      var equipeEmportantLaMise = dialogue.dernierJoueurAyantMise().getEquipeJoueur();
+      return Phase.Resultat.termine(equipeEmportantLaMise, dialogue.pointsEngages(), pointsBonus(equipeEmportantLaMise));
     }
     var vainqueur = meilleurParmi(participants);
     if (dialogue.terminePar(KANTA)) {
@@ -52,30 +54,39 @@ public abstract class Phase {
   }
 
   public Participants participantsParmi(Opposants opposants) {
-    return new Participants(opposants.dansLOrdre().stream()
-      .filter(joueur -> peutParticiper(joueur.main()))
-      .collect(Collectors.toList()));
+    return new Participants(opposants.dansLOrdreEquipe().stream().filter(equipe -> peutParticiper(equipe.getJoueurEsku().main())).collect(Collectors.toList()));
   }
 
   protected boolean peutParticiper(Main main) {
     return true;
   }
 
-  private Joueur meilleurParmi(Participants participants) {
-    Joueur meilleur = null;
-    for (Joueur joueur : participants.dansLOrdre()) {
-      meilleur = meilleur == null ? joueur : meilleurEntre(meilleur, joueur);
+  private Equipe meilleurParmi(Participants participants) {
+    Equipe meilleur = null;
+    for (Equipe equipe : participants.dansLOrdreEquipe()) {
+      meilleur = meilleur == null ? equipe : meilleurEntre(meilleur, equipe);
     }
     return meilleur;
   }
 
-  private Joueur meilleurEntre(Joueur joueurEsku, Joueur joueurZaku) {
+  private Joueur meilleurEntreEquipeEsku(Joueur joueurEsku, Joueur joueurZaku) {
     return mainEskuEstMeilleure(joueurEsku.main(), joueurZaku.main()) ? joueurEsku : joueurZaku;
+  }
+
+  private Joueur meilleurEntreEquipeZaku(Joueur joueurEsku, Joueur joueurZaku) {
+    return mainEskuEstMeilleure(joueurEsku.main(), joueurZaku.main()) ? joueurEsku : joueurZaku;
+  }
+
+  private Equipe meilleurEntre(Equipe equipeEsku, Equipe equipeZaku) {
+    Joueur meilleureEsku = meilleurEntreEquipeEsku(equipeEsku.getJoueurEsku(),equipeEsku.getJoueurZaku());
+    Joueur meilleureZaku = meilleurEntreEquipeZaku(equipeZaku.getJoueurEsku(),equipeZaku.getJoueurZaku());
+    Joueur gagnantEsku = mainEskuEstMeilleure(meilleureEsku.main(), meilleureZaku.main()) ? meilleureEsku : meilleureZaku;
+    return gagnantEsku.getEquipeJoueur();
   }
 
   protected abstract boolean mainEskuEstMeilleure(Main mainJoueurEsku, Main mainJoueurZaku);
 
-  protected int pointsBonus(Joueur vainqueur) {
+  protected int pointsBonus(Equipe vainqueur) {
     return 0;
   }
 
@@ -84,21 +95,21 @@ public abstract class Phase {
       return new Resultat(null, 0, 0);
     }
 
-    public static Resultat termine(Joueur vainqueur, int pointsImmediats, int pointsFinDuTour) {
+    public static Resultat termine(Equipe vainqueur, int pointsImmediats, int pointsFinDuTour) {
       return new Resultat(vainqueur, pointsImmediats, pointsFinDuTour);
     }
 
-    private final Joueur vainqueur;
+    private final Equipe vainqueur;
     public final int pointsImmediats;
     public final int pointsFinDuTour;
 
-    private Resultat(Joueur vainqueur, int pointsImmediats, int pointsFinDuTour) {
+    private Resultat(Equipe vainqueur, int pointsImmediats, int pointsFinDuTour) {
       this.pointsImmediats = pointsImmediats;
       this.vainqueur = vainqueur;
       this.pointsFinDuTour = pointsFinDuTour;
     }
 
-    public Optional<Joueur> vainqueur() {
+    public Optional<Equipe> vainqueur() {
       return Optional.ofNullable(vainqueur);
     }
   }

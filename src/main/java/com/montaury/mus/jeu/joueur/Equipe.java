@@ -21,6 +21,10 @@ public class Equipe {
     {
         this.joueursEquipe=mesJoueurs;
         this.nomEquipe=nom;
+        for (Joueur joueur : mesJoueurs)
+        {
+            joueur.setEquipeJoueur(this);
+        }
     }
 
     /*METHODES*/

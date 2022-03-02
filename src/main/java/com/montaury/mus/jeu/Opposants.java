@@ -88,9 +88,14 @@ public class Opposants {
     return equipeZaku;
   }
 
-  public List<Joueur> dansLOrdre()
+  public List<Joueur> dansLOrdreJoueur()
   {
     return List.of(equipeEsku.getJoueurEsku(),equipeZaku.getJoueurEsku(),equipeEsku.getJoueurZaku(),equipeZaku.getJoueurZaku());
+  }
+
+  public List<Equipe> dansLOrdreEquipe()
+  {
+    return List.of(getEquipeEsku(),getEquipeZaku());
   }
 
 }
