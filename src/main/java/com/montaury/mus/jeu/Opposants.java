@@ -52,11 +52,11 @@ public class Opposants {
   }*/
 
 
-  public Joueur joueurEskuEquipeEzku()
+  public Joueur joueurEskuEquipeEsku()
   {
     return equipeEsku.getJoueurEsku();
   }
-  public Joueur joueurZakuEquipeEzku()
+  public Joueur joueurZakuEquipeEsku()
   {
     return equipeEsku.getJoueurZaku();
   }
@@ -72,7 +72,7 @@ public class Opposants {
 
   public Joueur joueurEsku()
   {
-    return joueurEskuEquipeEzku();
+    return joueurEskuEquipeEsku();
   }
 
   public Joueur joueurZaku()
