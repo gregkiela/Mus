@@ -37,6 +37,6 @@ public class Equipe {
 
     public Joueur getJoueurZaku()
     {
-        return joueursEquipe.get(joueursEquipe.size()-1);
+        return joueursEquipe.get(1);
     }
 }

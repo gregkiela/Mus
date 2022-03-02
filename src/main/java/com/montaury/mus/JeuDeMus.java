@@ -22,8 +22,8 @@ public class JeuDeMus {
     listeEquipe1.add(Joueur.ordinateur());
 
     var listeEquipe2 = new ArrayList<Joueur>();
-    listeEquipe1.add(Joueur.ordinateur());
-    listeEquipe1.add(Joueur.ordinateur());
+    listeEquipe2.add(Joueur.ordinateur());
+    listeEquipe2.add(Joueur.ordinateur());
 
     var Equipe1 =  new Equipe(listeEquipe1,"Equipe joueur");
     var Equipe2 =  new Equipe(listeEquipe2, "Equipe Ordinateur");
