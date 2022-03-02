@@ -54,16 +54,6 @@ class OpposantsTest {
 
         assertThat(opposants.getEquipeEsku()).isEqualTo(Equipe1);
         assertThat(opposants.getEquipeZaku()).isEqualTo(Equipe2);
-
-        opposants.tourner();
-
-        assertThat(opposants.getEquipeEsku()).isEqualTo(Equipe2);
-        assertThat(opposants.getEquipeZaku()).isEqualTo(Equipe1);
-
-        opposants.tourner();
-
-        assertThat(opposants.getEquipeEsku()).isEqualTo(Equipe1);
-        assertThat(opposants.getEquipeZaku()).isEqualTo(Equipe2);
     }
 
     @Test
@@ -93,33 +83,14 @@ class OpposantsTest {
         assertThat(opposants.joueurZakuEquipeZaku()).isEqualTo(joueur4);
 
         opposants.tourner();
-
-        assertThat(opposants.joueurEskuEquipeEsku()).isEqualTo(joueur3);
-        assertThat(opposants.joueurEskuEquipeZaku()).isEqualTo(joueur2);
-        assertThat(opposants.joueurZakuEquipeEsku()).isEqualTo(joueur4);
-        assertThat(opposants.joueurZakuEquipeZaku()).isEqualTo(joueur1);
-
         opposants.tourner();
-
-        assertThat(opposants.joueurEskuEquipeEsku()).isEqualTo(joueur2);
-        assertThat(opposants.joueurEskuEquipeZaku()).isEqualTo(joueur4);
-        assertThat(opposants.joueurZakuEquipeEsku()).isEqualTo(joueur1);
-        assertThat(opposants.joueurZakuEquipeZaku()).isEqualTo(joueur3);
-
         opposants.tourner();
-
-        assertThat(opposants.joueurEskuEquipeEsku()).isEqualTo(joueur3);
-        assertThat(opposants.joueurEskuEquipeZaku()).isEqualTo(joueur2);
-        assertThat(opposants.joueurZakuEquipeEsku()).isEqualTo(joueur4);
-        assertThat(opposants.joueurZakuEquipeZaku()).isEqualTo(joueur1);
-        //CODE DE TRES BONNE QUALITE
-
         opposants.tourner();
-
-        assertThat(opposants.joueurEskuEquipeEsku()).isEqualTo(joueur3);
-        assertThat(opposants.joueurEskuEquipeZaku()).isEqualTo(joueur2);
-        assertThat(opposants.joueurZakuEquipeEsku()).isEqualTo(joueur4);
-        assertThat(opposants.joueurZakuEquipeZaku()).isEqualTo(joueur1);
+        
+        assertThat(opposants.joueurEskuEquipeEsku()).isEqualTo(joueur1);
+        assertThat(opposants.joueurEskuEquipeZaku()).isEqualTo(joueur3);
+        assertThat(opposants.joueurZakuEquipeEsku()).isEqualTo(joueur2);
+        assertThat(opposants.joueurZakuEquipeZaku()).isEqualTo(joueur4);
 
     }
 
