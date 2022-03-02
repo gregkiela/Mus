@@ -13,8 +13,8 @@ public class Opposants {
   private Equipe equipeZaku;
 
   public Opposants(Joueur joueurEsku, Joueur joueurZaku) {
-    Equipe equipe1 =new Equipe(List.of(joueurEsku),"Equipe1");
-    Equipe equipe2 =new Equipe(List.of(joueurZaku),"Equipe2");
+    this.equipeEsku =new Equipe(List.of(joueurEsku),"Equipe1");
+    this.equipeZaku =new Equipe(List.of(joueurZaku),"Equipe2");
   }
 
   public Opposants(Equipe equipeEsku, Equipe equipeZaku)
@@ -70,9 +70,14 @@ public class Opposants {
     return equipeZaku.getJoueurZaku();
   }
 
+  public Joueur joueurEsku()
+  {
+    return joueurEskuEquipeEzku();
+  }
+
   public Joueur joueurZaku()
   {
-    return equipeZaku.getJoueurZaku();
+    return joueurZakuEquipeZaku();
   }
 
   public Equipe getEquipeEsku() {
