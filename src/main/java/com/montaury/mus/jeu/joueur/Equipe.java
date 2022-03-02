@@ -39,4 +39,9 @@ public class Equipe {
     {
         return joueursEquipe.get(1);
     }
+
+    public String nomEquipe()
+    {
+        return this.nomEquipe;
+    }
 }
