@@ -22,7 +22,7 @@ public class FauxJeu extends Phase {
   }
 
   @Override
-  public int pointsBonus(Equipe vainqueur) {
+  public int pointsBonus(Joueur vainqueur) {
     return 1;
   }
 }

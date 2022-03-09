@@ -7,6 +7,7 @@ import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.joueur.Equipe;
 import com.montaury.mus.jeu.Opposants;
 import com.montaury.mus.jeu.tour.phases.dialogue.Dialogue;
+import com.sun.source.doctree.SystemPropertyTree;
 
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -28,13 +29,17 @@ public abstract class Phase {
 
   public final Resultat jouer(Evenements affichage, Opposants opposants) {
     affichage.nouvellePhase(this);
+    System.out.println("Joueur Esku Equipe Esku : "+opposants.getEquipeEsku().getJoueurEsku().nom());
+    System.out.println("Joueur Zaku Equipe Esku : "+opposants.getEquipeEsku().getJoueurZaku().nom());
+    System.out.println("Joueur Esku Equipe Zaku : "+opposants.getEquipeZaku().getJoueurEsku().nom());
+    System.out.println("Joueur Esku Equipe Zaku : "+opposants.getEquipeZaku().getJoueurZaku().nom());
     var participants = participantsParmi(opposants);
     if (participants.aucun()) {
       return Phase.Resultat.nonJouable();
     }
     if (participants.estUnique()) {
       Joueur premier = participants.premier();
-      return Phase.Resultat.termine(premier.getEquipeJoueur(), 0, pointsBonus(premier.getEquipeJoueur()));
+      return Phase.Resultat.termine(premier.getEquipeJoueur(), 0, pointsBonus(premier));
     }
     var resultat = new Dialogue(affichage).derouler(participants);
     return conclure(resultat, participants);
@@ -42,29 +47,29 @@ public abstract class Phase {
 
   private Resultat conclure(Dialogue.Recapitulatif dialogue, Participants participants) {
     if (dialogue.terminePar(TIRA)) {
-      var equipeEmportantLaMise = dialogue.dernierJoueurAyantMise().getEquipeJoueur();
-      return Phase.Resultat.termine(equipeEmportantLaMise, dialogue.pointsEngages(), pointsBonus(equipeEmportantLaMise));
+      var equipeEmportantLaMise = dialogue.dernierJoueurAyantMise();
+      return Phase.Resultat.termine(equipeEmportantLaMise.getEquipeJoueur(), dialogue.pointsEngages(), pointsBonus(equipeEmportantLaMise));
     }
     var vainqueur = meilleurParmi(participants);
     if (dialogue.terminePar(KANTA)) {
-      return Phase.Resultat.termine(vainqueur, Manche.Score.POINTS_POUR_TERMINER_MANCHE, 0);
+      return Phase.Resultat.termine(vainqueur.getEquipeJoueur(), Manche.Score.POINTS_POUR_TERMINER_MANCHE, 0);
     }
     var bonus = pointsBonus(vainqueur);
-    return Phase.Resultat.termine(vainqueur, 0, bonus + (dialogue.terminePar(PASO) && bonus != 0 ? 0 : dialogue.pointsEngages()));
+    return Phase.Resultat.termine(vainqueur.getEquipeJoueur(), 0, bonus + (dialogue.terminePar(PASO) && bonus != 0 ? 0 : dialogue.pointsEngages()));
   }
 
   public Participants participantsParmi(Opposants opposants) {
-    return new Participants(opposants.dansLOrdreEquipe().stream().filter(equipe -> peutParticiper(equipe.getJoueurEsku().main())).collect(Collectors.toList()));
+    return new Participants(opposants.dansLOrdreJoueur().stream().filter(joueur -> peutParticiper(joueur.main())).collect(Collectors.toList()));
   }
 
   protected boolean peutParticiper(Main main) {
     return true;
   }
 
-  private Equipe meilleurParmi(Participants participants) {
-    Equipe meilleur = null;
-    for (Equipe equipe : participants.dansLOrdreEquipe()) {
-      meilleur = meilleur == null ? equipe : meilleurEntre(meilleur, equipe);
+  private Joueur meilleurParmi(Participants participants) {
+    Joueur meilleur = null;
+    for (Joueur joueur : participants.dansLOrdreJoueur()) {
+      meilleur = meilleur == null ? joueur : meilleurEntre(meilleur, joueur);
     }
     return meilleur;
   }
@@ -77,16 +82,14 @@ public abstract class Phase {
     return mainEskuEstMeilleure(joueurEsku.main(), joueurZaku.main()) ? joueurEsku : joueurZaku;
   }
 
-  private Equipe meilleurEntre(Equipe equipeEsku, Equipe equipeZaku) {
-    Joueur meilleureEsku = meilleurEntreEquipeEsku(equipeEsku.getJoueurEsku(),equipeEsku.getJoueurZaku());
-    Joueur meilleureZaku = meilleurEntreEquipeZaku(equipeZaku.getJoueurEsku(),equipeZaku.getJoueurZaku());
-    Joueur gagnantEsku = mainEskuEstMeilleure(meilleureEsku.main(), meilleureZaku.main()) ? meilleureEsku : meilleureZaku;
-    return gagnantEsku.getEquipeJoueur();
+  private Joueur meilleurEntre(Joueur joueurEsku, Joueur joueurZaku) {
+    Joueur meilleureEsku = mainEskuEstMeilleure(joueurEsku.main(), joueurZaku.main()) ? joueurEsku : joueurZaku;
+    return meilleureEsku;
   }
 
   protected abstract boolean mainEskuEstMeilleure(Main mainJoueurEsku, Main mainJoueurZaku);
 
-  protected int pointsBonus(Equipe vainqueur) {
+  protected int pointsBonus(Joueur vainqueur) {
     return 0;
   }
 

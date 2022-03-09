@@ -22,7 +22,7 @@ public class Paires extends Phase {
   }
 
   @Override
-  public int pointsBonus(Equipe vainqueur) {
-    return vainqueur.getJoueurEsku().main().getPaires().pointsBonus();
+  public int pointsBonus(Joueur vainqueur) {
+    return vainqueur.main().getPaires().pointsBonus();
   }
 }

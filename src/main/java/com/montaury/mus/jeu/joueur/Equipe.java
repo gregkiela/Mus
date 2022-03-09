@@ -31,7 +31,9 @@ public class Equipe {
 
     public void tourner()
     {
-        Collections.rotate( this.joueursEquipe, 1);
+        var tmp = getJoueurEsku();
+        setJoueurEsku(getJoueurZaku());
+        setJoueurZaku(tmp);
     }
 
     public Joueur getJoueurEsku()
@@ -39,10 +41,7 @@ public class Equipe {
         return joueursEquipe.get(0);
     }
 
-    public Joueur getJoueurZaku()
-    {
-        return joueursEquipe.get(1);
-    }
+    public Joueur getJoueurZaku(){return joueursEquipe.get(joueursEquipe.size()-1);}
 
     public String nomEquipe()
     {
@@ -53,4 +52,15 @@ public class Equipe {
     {
         joueursEquipe.remove(joueur);
     }
+
+    public void setJoueurEsku(Joueur joueur)
+    {
+         joueursEquipe.set(0,joueur);
+    }
+
+    public void setJoueurZaku(Joueur joueur)
+    {
+        joueursEquipe.set(joueursEquipe.size()-1, joueur);
+    }
+
 }

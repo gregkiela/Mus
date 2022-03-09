@@ -33,7 +33,7 @@ public class Jeu extends Phase {
   }
 
   @Override
-  public int pointsBonus(Equipe vainqueur) {
-    return ((vainqueur.getJoueurEsku().main().pointsPourJeu() == 31 ? 3 : 2));
+  public int pointsBonus(Joueur vainqueur) {
+    return ((vainqueur.main().pointsPourJeu() == 31 ? 3 : 2));
   }
 }
