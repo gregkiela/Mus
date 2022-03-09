@@ -48,4 +48,9 @@ public class Equipe {
     {
         return this.nomEquipe;
     }
+
+    public void retirer(Joueur joueur)
+    {
+        joueursEquipe.remove(joueur);
+    }
 }

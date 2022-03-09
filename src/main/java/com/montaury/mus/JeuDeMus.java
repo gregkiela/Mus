@@ -31,7 +31,7 @@ public class JeuDeMus {
     var partie = new Partie(new AffichageEvenements(joueurHumain));
     var resultat = partie.jouer(new Opposants(Equipe1,Equipe2));
 
-    System.out.println("Le vainqueur de la partie est " + resultat.vainqueur().nom());
+    System.out.println("Le vainqueur de la partie est " + resultat.vainqueur().getJoueurEsku().nom());
   }
 }
 //test

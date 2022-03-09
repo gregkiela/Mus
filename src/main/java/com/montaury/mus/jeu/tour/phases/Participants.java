@@ -29,12 +29,12 @@ public class Participants {
     return dansLOrdreEquipe.size() == 1;
   }
 
-  public Equipe premier() {
-    return dansLOrdreEquipe.get(0);
+  public Joueur premier() {
+    return dansLOrdreJoueur.get(0);
   }
 
-  public Equipe adversaireDe(Equipe equipeParlant) {
-    return equipeParlant == premier() ? dansLOrdreEquipe.get(1) : premier();
+  public Joueur adversaireDe(Joueur joueurParlant) {
+    return joueurParlant == premier() ? dansLOrdreJoueur.get(1) : premier();
   }
 
   public Iterable<Equipe> dansLOrdreEquipe() {
@@ -44,9 +44,9 @@ public class Participants {
     return dansLOrdreJoueur;
   }
 
-  public Participants retirer(Equipe equipe) {
+  public Participants retirer(Joueur joueur) {
     var equipes = new ArrayList<>(dansLOrdreEquipe);
-    equipes.remove(equipe);
+    joueur.getEquipeJoueur().retirer(joueur);
     return new Participants(equipes);
   }
 }

@@ -2,6 +2,7 @@ package com.montaury.mus.jeu.tour.phases;
 
 import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.joueur.Main;
+import com.montaury.mus.jeu.joueur.Equipe;
 
 import static com.montaury.mus.jeu.tour.phases.Jeu.aLeJeu;
 
@@ -21,7 +22,7 @@ public class FauxJeu extends Phase {
   }
 
   @Override
-  public int pointsBonus(Joueur vainqueur) {
+  public int pointsBonus(Equipe vainqueur) {
     return 1;
   }
 }
