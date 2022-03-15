@@ -6,6 +6,8 @@ import com.montaury.mus.jeu.carte.Paquet;
 import com.montaury.mus.jeu.evenements.Evenements;
 import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.tour.phases.dialogue.choix.TypeChoix;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.montaury.mus.jeu.tour.phases.dialogue.choix.TypeChoix.MINTZA;
@@ -29,7 +31,10 @@ public class Mus {
 
     while (true) {
       joueursDansLOrdre.forEach(this::completerMain);
-      if (!veulentAllerMus(joueursDansLOrdre)) {
+      var joueursDuMus = new ArrayList<Joueur>();
+      joueursDuMus.add(joueursDansLOrdre.get(0));
+      joueursDuMus.add(joueursDansLOrdre.get(1));
+      if (!veulentAllerMus(joueursDuMus)) {
         break;
       }
       joueursDansLOrdre.forEach(this::allerMus);
