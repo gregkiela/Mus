@@ -29,10 +29,6 @@ public abstract class Phase {
 
   public final Resultat jouer(Evenements affichage, Opposants opposants) {
     affichage.nouvellePhase(this);
-    System.out.println("Joueur Esku Equipe Esku : "+opposants.getEquipeEsku().getJoueurEsku().nom());
-    System.out.println("Joueur Zaku Equipe Esku : "+opposants.getEquipeEsku().getJoueurZaku().nom());
-    System.out.println("Joueur Esku Equipe Zaku : "+opposants.getEquipeZaku().getJoueurEsku().nom());
-    System.out.println("Joueur Esku Equipe Zaku : "+opposants.getEquipeZaku().getJoueurZaku().nom());
     var participants = participantsParmi(opposants);
     if (participants.aucun()) {
       return Phase.Resultat.nonJouable();
@@ -46,7 +42,7 @@ public abstract class Phase {
   }
 
   private Resultat conclure(Dialogue.Recapitulatif dialogue, Participants participants) {
-    if (dialogue.terminePar(TIRA)) {
+    if (dialogue.terminePar(TIRA) && participants.premier().getEquipeJoueur()==participants.adversaireDe(participants.premier()).getEquipeJoueur()) {
       var equipeEmportantLaMise = dialogue.dernierJoueurAyantMise();
       return Phase.Resultat.termine(equipeEmportantLaMise.getEquipeJoueur(), dialogue.pointsEngages(), pointsBonus(equipeEmportantLaMise));
     }
@@ -59,7 +55,8 @@ public abstract class Phase {
   }
 
   public Participants participantsParmi(Opposants opposants) {
-    return new Participants(opposants.dansLOrdreJoueur().stream().filter(joueur -> peutParticiper(joueur.main())).collect(Collectors.toList()));
+    Participants participants = new Participants(opposants.dansLOrdreJoueur().stream().filter(joueur -> peutParticiper(joueur.main())).collect(Collectors.toList()));
+    return participants;
   }
 
   protected boolean peutParticiper(Main main) {

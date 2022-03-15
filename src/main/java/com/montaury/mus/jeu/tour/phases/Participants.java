@@ -26,7 +26,47 @@ public class Participants {
   }
 
   public Joueur adversaireDe(Joueur joueurParlant) {
-    return joueurParlant == premier() ? dansLOrdreJoueur.get(1) : premier();
+
+    var i = 0;
+    var indiceJoueur = 0;
+    for(i=0;i< dansLOrdreJoueur.size();i++)
+    {
+      if(dansLOrdreJoueur.get(i)==joueurParlant)
+      {
+        indiceJoueur=i;
+      }
+    }
+    var indiceFuturJoueur=indiceJoueur;
+
+    while(dansLOrdreJoueur.get(indiceFuturJoueur).getEquipeJoueur()==dansLOrdreJoueur.get(indiceJoueur).getEquipeJoueur())
+    {
+      if(indiceFuturJoueur+1>=dansLOrdreJoueur.size())
+      {
+        indiceFuturJoueur=0;
+      }
+      else
+      {
+        indiceFuturJoueur++;
+      }
+    }
+    return dansLOrdreJoueur.get(indiceFuturJoueur);
+    /*
+    if(joueurParlant == premier())
+    {
+      return dansLOrdreJoueur.get(1);
+    }
+    else if(joueurParlant == dansLOrdreJoueur.get(1))
+    {
+      return dansLOrdreJoueur.get(2);
+    }
+    else if(joueurParlant == dansLOrdreJoueur.get(2))
+    {
+      return dansLOrdreJoueur.get(3);
+    }
+    else
+    {
+      return dansLOrdreJoueur.get(0);
+    }*/
   }
 
   public Iterable<Joueur> dansLOrdreJoueur() {

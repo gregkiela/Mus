@@ -27,11 +27,17 @@ public class Dialogue {
     var deroulement = new Deroulement(participants);
     var choix = new ArrayList<ChoixJoueur>();
     while (!deroulement.estTermine()) {
+      System.out.println(deroulement.estTermine()+"1");
       var joueurParlant = deroulement.prochainJoueur();
+      System.out.println(deroulement.estTermine()+"2");
       var choixJoueur = joueurParlant.interfaceJoueur.faireChoixParmi(deroulement.choixPossibles());
+      System.out.println(deroulement.estTermine()+"3");
       affichage.choixFait(joueurParlant, choixJoueur);
+      System.out.println(deroulement.estTermine()+"4");
       choix.add(new ChoixJoueur(choixJoueur, joueurParlant));
+      System.out.println(deroulement.estTermine()+"5");
       deroulement = choixJoueur.influerSur(deroulement);
+      System.out.println(deroulement.estTermine()+"6");
     }
     return new Recapitulatif(choix);
   }
@@ -92,7 +98,8 @@ public class Dialogue {
     }
 
     public Deroulement retirerJoueurParlant() {
-      return new Deroulement(participants.retirer(joueurParlant), joueursDevantParler, prochainsChoixPossibles);
+      Participants participant = participants.retirer(joueurParlant);
+      return new Deroulement(participant, participant.dansLOrdreJoueur().iterator(), prochainsChoixPossibles);
     }
   }
 
