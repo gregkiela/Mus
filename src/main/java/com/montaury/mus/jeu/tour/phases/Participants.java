@@ -9,79 +9,68 @@ import java.util.List;
 public class Participants {
   private List<Joueur> dansLOrdreJoueur;
 
-  public Participants(List<Joueur> dansLOrdreJoueur) {
+  public Participants(List<Joueur> dansLOrdreJoueur)
+  {
     this.dansLOrdreJoueur = dansLOrdreJoueur;
   }
 
-  public boolean aucun() {
+  public boolean aucun()
+  {
     return dansLOrdreJoueur.isEmpty();
   }
 
-  public boolean estUnique() {
+  public boolean estUnique()
+  {
     return dansLOrdreJoueur.size() == 1;
   }
 
-  public Joueur premier() {
+  public Joueur premier()
+  {
     return dansLOrdreJoueur.get(0);
   }
 
-  public Joueur adversaireDe(Joueur joueurParlant) {
+  public Joueur adversaireDe(Joueur joueurParlant)
+  {
+    var indiceJoueurParlant = 0;
+    var nombreIndicesPossibles = dansLOrdreJoueur.size()-1;
 
-    var i = 0;
-    var indiceJoueur = 0;
-    for(i=0;i< dansLOrdreJoueur.size();i++)
+    for(var i=0 ; i<=nombreIndicesPossibles ; i++)
     {
       if(dansLOrdreJoueur.get(i)==joueurParlant)
       {
-        indiceJoueur=i;
+        indiceJoueurParlant=i;
       }
     }
-    var indiceFuturJoueur=indiceJoueur;
-    if(joueurParlant.getEquipeJoueur().getNbjoueur()>1) {
-      while (dansLOrdreJoueur.get(indiceFuturJoueur).getEquipeJoueur() == dansLOrdreJoueur.get(indiceJoueur).getEquipeJoueur()) {
-        if (indiceFuturJoueur + 1 >= dansLOrdreJoueur.size()) {
-          indiceFuturJoueur = 0;
-        } else {
-          indiceFuturJoueur++;
+
+    var indiceFuturAdversaireJoueurParlant=indiceJoueurParlant;
+
+    if(joueurParlant.getEquipeJoueur().getNbjoueur()>1)
+    {
+      var equipeJoueurParlant = dansLOrdreJoueur.get(indiceJoueurParlant).getEquipeJoueur();
+      while (dansLOrdreJoueur.get(indiceFuturAdversaireJoueurParlant).getEquipeJoueur() == equipeJoueurParlant)
+      {
+        indiceFuturAdversaireJoueurParlant++;
+
+        if (indiceFuturAdversaireJoueurParlant > nombreIndicesPossibles)
+        {
+          indiceFuturAdversaireJoueurParlant = 0;
         }
       }
-      return dansLOrdreJoueur.get(indiceFuturJoueur);
+      return dansLOrdreJoueur.get(indiceFuturAdversaireJoueurParlant);
     }
     else
     {
-      if(indiceJoueur==0)
-      {
-        return dansLOrdreJoueur.get(1);
-      }
-      else
-      {
-        return dansLOrdreJoueur.get(0);
-      }
+      return indiceJoueurParlant==0 ? (dansLOrdreJoueur.get(1)) : (dansLOrdreJoueur.get(0));
     }
-    /*
-    if(joueurParlant == premier())
-    {
-      return dansLOrdreJoueur.get(1);
-    }
-    else if(joueurParlant == dansLOrdreJoueur.get(1))
-    {
-      return dansLOrdreJoueur.get(2);
-    }
-    else if(joueurParlant == dansLOrdreJoueur.get(2))
-    {
-      return dansLOrdreJoueur.get(3);
-    }
-    else
-    {
-      return dansLOrdreJoueur.get(0);
-    }*/
   }
 
-  public Iterable<Joueur> dansLOrdreJoueur() {
+  public Iterable<Joueur> dansLOrdreJoueur()
+  {
     return dansLOrdreJoueur;
   }
 
-  public Participants retirer(Joueur joueur) {
+  public Participants retirer(Joueur joueur)
+  {
     var joueurs = new ArrayList<>(dansLOrdreJoueur);
     joueurs.remove(joueur);
     return new Participants(joueurs);

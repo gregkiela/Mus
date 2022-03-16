@@ -13,10 +13,10 @@ public class Equipe {
     private String nomEquipe;   //nom de l'equipe en string
     private List<Joueur> joueursEquipe;     // les joueurs qui composent une équipe
     private int nbJoueur = 0;
+
     /*CONSTRUCTEUR*/
 
-    //constructeur demandant le joueur 1, le joueur 2 et son nom
-
+    //constructeur demandant une liste de joueur et le nom d'équipe
     public Equipe(List<Joueur> mesJoueurs, String nom)
     {
         this.joueursEquipe=mesJoueurs;
@@ -43,16 +43,14 @@ public class Equipe {
         return joueursEquipe.get(0);
     }
 
-    public Joueur getJoueurZaku(){return joueursEquipe.get(nbJoueur-1);}
+    public Joueur getJoueurZaku()
+    {
+        return joueursEquipe.get(nbJoueur-1);
+    }
 
     public String nomEquipe()
     {
         return this.nomEquipe;
-    }
-
-    public void retirer(Joueur joueur)
-    {
-        joueursEquipe.remove(joueur);
     }
 
     public void setJoueurEsku(Joueur joueur)

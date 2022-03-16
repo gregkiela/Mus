@@ -19,23 +19,28 @@ public class Joueur {
     equipeJoueur=null;
   }
 
-  public static Joueur humain(String nom) {
+  public static Joueur humain(String nom)
+  {
     return new Joueur(nom, new InterfaceJoueurHumain());
   }
 
-  public static Joueur ordinateur(String nom) {
+  public static Joueur ordinateur(String nom)
+  {
     return new Joueur(nom, new InterfaceJoueurOrdinateur());
   }
 
-  public String nom() {
+  public String nom()
+  {
     return nom;
   }
 
-  public Main main() {
+  public Main main()
+  {
     return main;
   }
 
-  public void donnerCartes(List<Carte> cartes) {
+  public void donnerCartes(List<Carte> cartes)
+  {
     main.ajouter(cartes);
     interfaceJoueur.nouvelleMain(main);
   }

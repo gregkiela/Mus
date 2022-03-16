@@ -69,15 +69,8 @@ class TourTest {
     var joueurEsku = unJoueurFaisantChoix(new Mintza(), new Hordago());
     var joueurZaku = unJoueurFaisantChoix(new Kanta());
 
-    var listeEquipe1 = new ArrayList<Joueur>();
-    var listeEquipe2 = new ArrayList<Joueur>();
-    listeEquipe1.add(joueurEsku);
-    listeEquipe2.add(joueurZaku);
 
-    var equipe1 =  new Equipe(listeEquipe1,"Equipe joueur");
-    var equipe2 =  new Equipe(listeEquipe2, "Equipe Ordinateur");
-
-    var opposants = new Opposants(equipe1, equipe2);
+    var opposants = new Opposants(joueurEsku, joueurZaku);
     var score = new Manche.Score(opposants);
 
     tour.jouer(opposants, score);
