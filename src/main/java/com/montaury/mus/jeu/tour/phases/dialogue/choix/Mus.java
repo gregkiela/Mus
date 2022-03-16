@@ -9,6 +9,6 @@ public class Mus extends Choix {
 
   @Override
   public Dialogue.Deroulement influerSur(Dialogue.Deroulement deroulement) {
-    return null;
+    return deroulement;
   }
 }

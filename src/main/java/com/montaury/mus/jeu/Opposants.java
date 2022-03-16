@@ -2,6 +2,8 @@ package com.montaury.mus.jeu;
 
 import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.joueur.Equipe;
+
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -90,7 +92,14 @@ public class Opposants {
 
   public List<Joueur> dansLOrdreJoueur()
   {
-    return List.of(equipeEsku.getJoueurEsku(),equipeZaku.getJoueurEsku(),equipeEsku.getJoueurZaku(),equipeZaku.getJoueurZaku());
+     List<Joueur> ListeJoueur= new ArrayList<>();
+    for(var i=0;i< equipeEsku.getNbjoueur();i++)
+    {
+      ListeJoueur.add(equipeEsku.getJoueurIdentifiant(i));
+      ListeJoueur.add(equipeZaku.getJoueurIdentifiant(i));
+    }
+
+    return ListeJoueur;
   }
 
   public List<Equipe> dansLOrdreEquipe()

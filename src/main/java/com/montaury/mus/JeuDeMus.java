@@ -19,11 +19,11 @@ public class JeuDeMus {
 
     var listeEquipe1 = new ArrayList<Joueur>();
     listeEquipe1.add(joueurHumain);
-    listeEquipe1.add(Joueur.ordinateur("Ordi1pote"));
+    //listeEquipe1.add(Joueur.ordinateur("Ordi1pote"));
 
     var listeEquipe2 = new ArrayList<Joueur>();
     listeEquipe2.add(Joueur.ordinateur("Ordi1pasPote"));
-    listeEquipe2.add(Joueur.ordinateur("Ordi2pasPote"));
+    //listeEquipe2.add(Joueur.ordinateur("Ordi2pasPote"));
 
     var Equipe1 =  new Equipe(listeEquipe1,"Equipe joueur");
     var Equipe2 =  new Equipe(listeEquipe2, "Equipe Ordinateur");

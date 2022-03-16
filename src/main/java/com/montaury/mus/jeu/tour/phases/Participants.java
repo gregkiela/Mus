@@ -37,19 +37,27 @@ public class Participants {
       }
     }
     var indiceFuturJoueur=indiceJoueur;
-
-    while(dansLOrdreJoueur.get(indiceFuturJoueur).getEquipeJoueur()==dansLOrdreJoueur.get(indiceJoueur).getEquipeJoueur())
+    if(joueurParlant.getEquipeJoueur().getNbjoueur()>1) {
+      while (dansLOrdreJoueur.get(indiceFuturJoueur).getEquipeJoueur() == dansLOrdreJoueur.get(indiceJoueur).getEquipeJoueur()) {
+        if (indiceFuturJoueur + 1 >= dansLOrdreJoueur.size()) {
+          indiceFuturJoueur = 0;
+        } else {
+          indiceFuturJoueur++;
+        }
+      }
+      return dansLOrdreJoueur.get(indiceFuturJoueur);
+    }
+    else
     {
-      if(indiceFuturJoueur+1>=dansLOrdreJoueur.size())
+      if(indiceJoueur==0)
       {
-        indiceFuturJoueur=0;
+        return dansLOrdreJoueur.get(1);
       }
       else
       {
-        indiceFuturJoueur++;
+        return dansLOrdreJoueur.get(0);
       }
     }
-    return dansLOrdreJoueur.get(indiceFuturJoueur);
     /*
     if(joueurParlant == premier())
     {

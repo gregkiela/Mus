@@ -9,6 +9,7 @@ public class Idoki extends Choix {
 
   @Override
   public Dialogue.Deroulement influerSur(Dialogue.Deroulement deroulement) {
+
     return Dialogue.Deroulement.termine();
   }
 }

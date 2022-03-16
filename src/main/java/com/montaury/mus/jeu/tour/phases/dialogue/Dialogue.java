@@ -6,6 +6,8 @@ import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.tour.phases.Participants;
 import com.montaury.mus.jeu.tour.phases.dialogue.choix.Choix;
 import com.montaury.mus.jeu.tour.phases.dialogue.choix.TypeChoix;
+
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -86,14 +88,25 @@ public class Dialogue {
     }
 
     public Deroulement basculerSurAdversaire(List<TypeChoix> prochainsChoixPossibles) {
+      System.out.println("1");
       joueursDevantParler = Collections.singletonList(participants.adversaireDe(joueurParlant)).iterator();
+      System.out.println("2");
       this.prochainsChoixPossibles = prochainsChoixPossibles;
+      System.out.println("3");
       return this;
     }
 
     public Deroulement retirerJoueurParlant() {
       Participants participant = participants.retirer(joueurParlant);
-      return new Deroulement(participant, participant.dansLOrdreJoueur().iterator(), prochainsChoixPossibles);
+      if(!participant.estUnique())
+      {
+        return new Deroulement(participant, participant.dansLOrdreJoueur().iterator(), prochainsChoixPossibles);
+      }
+      else
+      {
+        List<Joueur> liste = new ArrayList<>();
+        return new Deroulement(participant,liste.iterator(),prochainsChoixPossibles);
+      }
     }
   }
 

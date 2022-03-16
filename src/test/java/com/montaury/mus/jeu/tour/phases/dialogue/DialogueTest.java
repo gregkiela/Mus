@@ -1,5 +1,6 @@
 package com.montaury.mus.jeu.tour.phases.dialogue;
 
+import com.montaury.mus.jeu.Opposants;
 import com.montaury.mus.jeu.evenements.Evenements;
 import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.tour.phases.Participants;
@@ -34,22 +35,26 @@ class DialogueTest {
     assertThat(recapitulatif.pointsEngages()).isOne();
   }
 
-  @Test
+ @Test
   void est_termine_si_le_dernier_choix_est_tira() {
-    Joueur joueur1 = unJoueurFaisantChoix(new Paso(), new Tira());
-    Joueur joueur2 = unJoueurFaisantChoix(new Imido());
+   Joueur joueur1 = unJoueurFaisantChoix(new Paso(), new Tira());
+   Joueur joueur2 = unJoueurFaisantChoix(new Imido());
 
-    Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(List.of(joueur1, joueur2)));
+     Opposants opposants = new Opposants(joueur1,joueur2);
 
-    assertThat(recapitulatif.pointsEngages()).isOne();
-  }
+   Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(opposants.dansLOrdreJoueur()));
+
+   assertThat(recapitulatif.pointsEngages()).isOne();
+ }
 
   @Test
   void est_termine_si_le_dernier_choix_est_idoki() {
     Joueur joueur1 = unJoueurFaisantChoix(new Paso(), new Idoki());
     Joueur joueur2 = unJoueurFaisantChoix(new Imido());
 
-    Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(List.of(joueur1, joueur2)));
+      Opposants opposants = new Opposants(joueur1,joueur2);
+
+    Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(opposants.dansLOrdreJoueur()));
 
     assertThat(recapitulatif.pointsEngages()).isEqualTo(2);
   }
@@ -59,7 +64,9 @@ class DialogueTest {
     Joueur joueur1 = unJoueurFaisantChoix(new Paso(), new Kanta());
     Joueur joueur2 = unJoueurFaisantChoix(new Hordago());
 
-    Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(List.of(joueur1, joueur2)));
+      Opposants opposants = new Opposants(joueur1,joueur2);
+
+    Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(opposants.dansLOrdreJoueur()));
 
     assertThat(recapitulatif.pointsEngages()).isEqualTo(40);
   }

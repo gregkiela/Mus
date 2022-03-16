@@ -12,7 +12,7 @@ public class Equipe {
     /*LES ATTRIBUTS*/
     private String nomEquipe;   //nom de l'equipe en string
     private List<Joueur> joueursEquipe;     // les joueurs qui composent une équipe
-
+    private int nbJoueur = 0;
     /*CONSTRUCTEUR*/
 
     //constructeur demandant le joueur 1, le joueur 2 et son nom
@@ -21,9 +21,9 @@ public class Equipe {
     {
         this.joueursEquipe=mesJoueurs;
         this.nomEquipe=nom;
-        for (Joueur joueur : mesJoueurs)
-        {
+        for (Joueur joueur : mesJoueurs) {
             joueur.setEquipeJoueur(this);
+            nbJoueur++;
         }
     }
 
@@ -31,9 +31,11 @@ public class Equipe {
 
     public void tourner()
     {
-        var tmp = getJoueurEsku();
-        setJoueurEsku(getJoueurZaku());
-        setJoueurZaku(tmp);
+        if(nbJoueur>1) {
+            var tmp = getJoueurEsku();
+            setJoueurEsku(getJoueurZaku());
+            setJoueurZaku(tmp);
+        }
     }
 
     public Joueur getJoueurEsku()
@@ -41,7 +43,7 @@ public class Equipe {
         return joueursEquipe.get(0);
     }
 
-    public Joueur getJoueurZaku(){return joueursEquipe.get(joueursEquipe.size()-1);}
+    public Joueur getJoueurZaku(){return joueursEquipe.get(nbJoueur-1);}
 
     public String nomEquipe()
     {
@@ -60,7 +62,16 @@ public class Equipe {
 
     public void setJoueurZaku(Joueur joueur)
     {
-        joueursEquipe.set(joueursEquipe.size()-1, joueur);
+        joueursEquipe.set(nbJoueur-1, joueur);
     }
 
+    public Joueur getJoueurIdentifiant(int i)
+    {
+        return(joueursEquipe.get(i));
+    }
+
+    public int getNbjoueur()
+    {
+        return nbJoueur;
+    }
 }

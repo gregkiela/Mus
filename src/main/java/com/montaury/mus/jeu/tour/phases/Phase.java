@@ -42,6 +42,7 @@ public abstract class Phase {
   }
 
   private Resultat conclure(Dialogue.Recapitulatif dialogue, Participants participants) {
+    System.out.println("Bonsoir");
     if (dialogue.terminePar(TIRA) && participants.premier().getEquipeJoueur()==participants.adversaireDe(participants.premier()).getEquipeJoueur()) {
       var equipeEmportantLaMise = dialogue.dernierJoueurAyantMise();
       return Phase.Resultat.termine(equipeEmportantLaMise.getEquipeJoueur(), dialogue.pointsEngages(), pointsBonus(equipeEmportantLaMise));
