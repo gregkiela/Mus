@@ -13,17 +13,27 @@ import java.util.Scanner;
 //Class du jeu Mus
 public class JeuDeMus {
   public static void main(String[] args) {
+    var choixMode ="";
+    while(!choixMode.equals("1v1") && !choixMode.equals("2v2"))
+    {
+      System.out.print("Choisissez votre mode de jeu entre: 1v1 | 2v2 ");
+      choixMode = new Scanner(System.in).next();
+    }
+
     System.out.print("Entrez votre nom: ");
+
     var nomJoueur = new Scanner(System.in).next();
     var joueurHumain = Joueur.humain(nomJoueur);
 
     var listeEquipe1 = new ArrayList<Joueur>();
     listeEquipe1.add(joueurHumain);
-    //listeEquipe1.add(Joueur.ordinateur("Ordi1pote"));
-
     var listeEquipe2 = new ArrayList<Joueur>();
     listeEquipe2.add(Joueur.ordinateur("Ordi1pasPote"));
-    //listeEquipe2.add(Joueur.ordinateur("Ordi2pasPote"));
+
+    if(choixMode.equals("2v2")) {
+      listeEquipe1.add(Joueur.ordinateur("Ordi1pote"));
+      listeEquipe2.add(Joueur.ordinateur("Ordi2pasPote"));
+    }
 
     var Equipe1 =  new Equipe(listeEquipe1,"Equipe joueur");
     var Equipe2 =  new Equipe(listeEquipe2, "Equipe Ordinateur");

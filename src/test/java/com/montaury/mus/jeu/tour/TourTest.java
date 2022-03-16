@@ -34,7 +34,7 @@ class TourTest {
     tour = new Tour(evenementsDeJeu, paquetEntierCroissant(), new Defausse());
   }
 
- /* @Test
+ /*@Test
   void devrait_donner_tous_les_points_au_joueur_esku_si_le_joueur_zaku_fait_tira() {
     var joueurEsku = unJoueurFaisantChoix(new Mintza(), new Imido(), new Imido(), new Imido(), new Imido(), new Tira());
     var joueurZaku = unJoueurFaisantChoix(new Tira());

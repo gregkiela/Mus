@@ -88,11 +88,8 @@ public class Dialogue {
     }
 
     public Deroulement basculerSurAdversaire(List<TypeChoix> prochainsChoixPossibles) {
-      System.out.println("1");
       joueursDevantParler = Collections.singletonList(participants.adversaireDe(joueurParlant)).iterator();
-      System.out.println("2");
       this.prochainsChoixPossibles = prochainsChoixPossibles;
-      System.out.println("3");
       return this;
     }
 
